@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Independent Candidate Network New Zealand</title>
+<style>
+:root{--ink:#18202a;--muted:#5c6472;--accent:#5b21b6;--soft:#f4f1ff;--line:#d9dce3;--green:#087f5b;--greenSoft:#e8f7f1}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f7f8fb;color:var(--ink)}
+header{background:linear-gradient(135deg,#4c1d95,#7c3aed);color:#fff;padding:34px 18px}
+.wrap{max-width:1100px;margin:auto}
+h1{margin:0 0 10px;font-size:clamp(2rem,7vw,3.4rem);line-height:1.05}
+header p{margin:0;max-width:780px;line-height:1.55;font-size:1.06rem}
+main{padding:20px 14px 60px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 8px 24px rgba(20,24,40,.07)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--soft);padding:14px;border-radius:14px;text-align:center}
+.stat strong{display:block;font-size:1.8rem;color:var(--accent)}
+.stat span{font-weight:700;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+button,.button{border:0;border-radius:11px;min-height:48px;padding:11px 16px;font-size:16px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.primary{background:var(--accent);color:#fff}
+.secondary{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+.danger{background:#fff;color:#b42318;border:1px solid #f1b4ae}
+label{display:block;font-weight:800;margin:14px 0 7px}
+input,select{width:100%;padding:13px;border:1px solid #bfc5d1;border-radius:11px;font-size:16px;background:#fff}
+.grid{display:grid;grid-template-columns:1fr;gap:10px}
+.electorate{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.electorate.claimed{background:var(--greenSoft);border-color:#a7dfca}
+.electorate h3{margin:0 0 6px;font-size:1.05rem}
+.electorate p{margin:0;color:var(--muted);line-height:1.4}
+.electorate .name{font-weight:800;color:var(--green)}
+.small{font-size:.9rem;color:var(--muted);line-height:1.5}
+.hidden{display:none!important}
+dialog{width:min(92vw,520px);border:0;border-radius:18px;padding:0;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(12,16,24,.55)}
+.dialog-inner{padding:20px}
+.dialog-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Independent Candidate Network New Zealand</h1>
+    <p>Choose an electorate, enter the legal name of the person intending to stand, and save the record.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <div class="stats">
+      <div class="stat"><strong>71</strong><span>electorates</span></div>
+      <div class="stat"><strong id="claimedCount">0</strong><span>names recorded</span></div>
+      <div class="stat"><strong id="openCount">71</strong><span>awaiting names</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Add or update a name</h2>
+    <form id="entryForm">
+      <label for="electorateSelect">Electorate</label>
+      <select id="electorateSelect" required>
+        <option value="">Choose an electorate</option>
+        <option value="Auckland Central">Auckland Central</option>
+<option value="Banks Peninsula">Banks Peninsula</option>
+<option value="Botany">Botany</option>
+<option value="Christchurch Central">Christchurch Central</option>
+<option value="Christchurch East">Christchurch East</option>
+<option value="Coromandel">Coromandel</option>
+<option value="Dunedin">Dunedin</option>
+<option value="East Cape">East Cape</option>
+<option value="East Coast Bays">East Coast Bays</option>
+<option value="Epsom">Epsom</option>
+<option value="Glendene">Glendene</option>
+<option value="Hamilton East">Hamilton East</option>
+<option value="Hamilton West">Hamilton West</option>
+<option value="Henderson">Henderson</option>
+<option value="Hutt South">Hutt South</option>
+<option value="Ilam">Ilam</option>
+<option value="Invercargill">Invercargill</option>
+<option value="Kaikōura">Kaikōura</option>
+<option value="Kaipara ki Mahurangi">Kaipara ki Mahurangi</option>
+<option value="Kapiti">Kapiti</option>
+<option value="Kenepuru">Kenepuru</option>
+<option value="Māngere">Māngere</option>
+<option value="Manurewa">Manurewa</option>
+<option value="Maungakiekie">Maungakiekie</option>
+<option value="Mt Albert">Mt Albert</option>
+<option value="Mt Maunganui">Mt Maunganui</option>
+<option value="Mt Roskill">Mt Roskill</option>
+<option value="Napier">Napier</option>
+<option value="Nelson">Nelson</option>
+<option value="New Plymouth">New Plymouth</option>
+<option value="North Shore">North Shore</option>
+<option value="Northcote">Northcote</option>
+<option value="Northland">Northland</option>
+<option value="Ōtāhuhu">Ōtāhuhu</option>
+<option value="Pakuranga">Pakuranga</option>
+<option value="Palmerston North">Palmerston North</option>
+<option value="Papakura">Papakura</option>
+<option value="Port Hills">Port Hills</option>
+<option value="Port Waikato">Port Waikato</option>
+<option value="Rangitata">Rangitata</option>
+<option value="Rangitīkei">Rangitīkei</option>
+<option value="Remutaka">Remutaka</option>
+<option value="Rotorua">Rotorua</option>
+<option value="Selwyn">Selwyn</option>
+<option value="Southland">Southland</option>
+<option value="Takanini">Takanini</option>
+<option value="Tāmaki">Tāmaki</option>
+<option value="Taranaki-King Country">Taranaki-King Country</option>
+<option value="Taupō">Taupō</option>
+<option value="Tauranga">Tauranga</option>
+<option value="Tukituki">Tukituki</option>
+<option value="Upper Harbour">Upper Harbour</option>
+<option value="Waikato">Waikato</option>
+<option value="Waimakariri">Waimakariri</option>
+<option value="Wairarapa">Wairarapa</option>
+<option value="Waitākere">Waitākere</option>
+<option value="Waitaki">Waitaki</option>
+<option value="Wellington Bays">Wellington Bays</option>
+<option value="Wellington North">Wellington North</option>
+<option value="West Coast-Tasman">West Coast-Tasman</option>
+<option value="Whanganui">Whanganui</option>
+<option value="Whangaparāoa">Whangaparāoa</option>
+<option value="Whangārei">Whangārei</option>
+<option value="Wigram">Wigram</option>
+<option value="Hauraki-Waikato">Hauraki-Waikato</option>
+<option value="Ikaroa-Rāwhiti">Ikaroa-Rāwhiti</option>
+<option value="Tāmaki Makaurau">Tāmaki Makaurau</option>
+<option value="Te Tai Hauāuru">Te Tai Hauāuru</option>
+<option value="Te Tai Tokerau">Te Tai Tokerau</option>
+<option value="Te Tai Tonga">Te Tai Tonga</option>
+<option value="Waiariki">Waiariki</option>
+      </select>
+
+      <label for="legalName">Legal name</label>
+      <input id="legalName" required autocomplete="name" placeholder="Full legal name">
+
+      <div class="actions" style="margin-top:16px">
+        <button class="primary" type="submit">Save to this register</button>
+        <a class="button secondary" href="https://roddyaxn.github.io/independent-candidate-planner-nz-2026/" target="_blank">Open Candidate Planner</a>
+        <a class="button secondary" href="https://roddyaxn.github.io/Candidate-checklist/" target="_blank">Open Candidate Checklist</a>
+      </div>
+    </form>
+    <p class="small">This working version saves permanently in this browser on this device. A later connection can send the same two fields to Airtable for a shared national register.</p>
+  </section>
+
+  <section class="card">
+    <h2>National register</h2>
+    <input id="searchBox" placeholder="Search electorate or name">
+    <div id="registerGrid" class="grid" style="margin-top:14px"></div>
+  </section>
+
+  <section class="card">
+    <h2>Backup and transfer</h2>
+    <div class="actions">
+      <button class="secondary" id="exportBtn" type="button">Export register</button>
+      <label class="button secondary" for="importFile" style="margin:0">Import register</label>
+      <input id="importFile" class="hidden" type="file" accept="application/json">
+      <button class="danger" id="clearBtn" type="button">Clear all names</button>
+    </div>
+  </section>
+</main>
+
+<dialog id="confirmDialog">
+  <div class="dialog-inner">
+    <h2>Saved</h2>
+    <p id="dialogText"></p>
+    <div class="dialog-actions">
+      <button class="primary" id="dialogClose">Done</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const ELECTORATES = ["Auckland Central", "Banks Peninsula", "Botany", "Christchurch Central", "Christchurch East", "Coromandel", "Dunedin", "East Cape", "East Coast Bays", "Epsom", "Glendene", "Hamilton East", "Hamilton West", "Henderson", "Hutt South", "Ilam", "Invercargill", "Kaikōura", "Kaipara ki Mahurangi", "Kapiti", "Kenepuru", "Māngere", "Manurewa", "Maungakiekie", "Mt Albert", "Mt Maunganui", "Mt Roskill", "Napier", "Nelson", "New Plymouth", "North Shore", "Northcote", "Northland", "Ōtāhuhu", "Pakuranga", "Palmerston North", "Papakura", "Port Hills", "Port Waikato", "Rangitata", "Rangitīkei", "Remutaka", "Rotorua", "Selwyn", "Southland", "Takanini", "Tāmaki", "Taranaki-King Country", "Taupō", "Tauranga", "Tukituki", "Upper Harbour", "Waikato", "Waimakariri", "Wairarapa", "Waitākere", "Waitaki", "Wellington Bays", "Wellington North", "West Coast-Tasman", "Whanganui", "Whangaparāoa", "Whangārei", "Wigram", "Hauraki-Waikato", "Ikaroa-Rāwhiti", "Tāmaki Makaurau", "Te Tai Hauāuru", "Te Tai Tokerau", "Te Tai Tonga", "Waiariki"];
+const STORAGE_KEY = 'independentCandidateNetworkNZ_v1';
+const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+const form = document.getElementById('entryForm');
+const electorateSelect = document.getElementById('electorateSelect');
+const legalName = document.getElementById('legalName');
+const registerGrid = document.getElementById('registerGrid');
+const searchBox = document.getElementById('searchBox');
+const claimedCount = document.getElementById('claimedCount');
+const openCount = document.getElementById('openCount');
+const dialog = document.getElementById('confirmDialog');
+const dialogText = document.getElementById('dialogText');
+
+function saveState(){localStorage.setItem(STORAGE_KEY, JSON.stringify(state));}
+function escapeHtml(value){
+  return value.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+}
+function render(){
+  const query = searchBox.value.trim().toLowerCase();
+  registerGrid.innerHTML = '';
+  let claimed = 0;
+  ELECTORATES.forEach(electorate => {
+    const name = state[electorate] || '';
+    if (name) claimed++;
+    const searchable = (electorate + ' ' + name).toLowerCase();
+    if (query && !searchable.includes(query)) return;
+    const card = document.createElement('article');
+    card.className = 'electorate' + (name ? ' claimed' : '');
+    card.innerHTML = '<h3>' + electorate + '</h3><p>' +
+      (name ? '<span class="name">' + escapeHtml(name) + '</span>' : 'Awaiting a name') +
+      '</p>';
+    card.addEventListener('click', () => {
+      electorateSelect.value = electorate;
+      legalName.value = name;
+      window.scrollTo({top:0, behavior:'smooth'});
+      legalName.focus();
+    });
+    registerGrid.appendChild(card);
+  });
+  claimedCount.textContent = claimed;
+  openCount.textContent = ELECTORATES.length - claimed;
+}
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const electorate = electorateSelect.value;
+  const name = legalName.value.trim();
+  if (!electorate || !name) return;
+  state[electorate] = name;
+  saveState();
+  render();
+  dialogText.textContent = name + ' has been saved under ' + electorate + ' on this device.';
+  dialog.showModal();
+});
+
+searchBox.addEventListener('input', render);
+document.getElementById('dialogClose').addEventListener('click', () => dialog.close());
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'independent-candidate-network-nz-register.json';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('importFile').addEventListener('change', async e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const incoming = JSON.parse(await file.text());
+    Object.keys(state).forEach(k => delete state[k]);
+    Object.assign(state, incoming);
+    saveState();
+    render();
+    dialogText.textContent = 'The register has been imported successfully.';
+    dialog.showModal();
+  } catch {
+    alert('That file could not be imported.');
+  }
+});
+
+document.getElementById('clearBtn').addEventListener('click', () => {
+  if (!confirm('Clear every saved name from this device?')) return;
+  Object.keys(state).forEach(k => delete state[k]);
+  saveState();
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
